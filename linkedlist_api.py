@@ -13,19 +13,28 @@ class LinkedList(object):
 
     def debug_print(self):
         '''Prints a representation of the entire list.'''
-        print('{} of {} >>> {}'.format(self.size, len(self.data), ', '.join([ str(item) for item in self.data ])))
+        # print('{} >>> {}'.format(self.size, ', '.join([ str(item) for item in self.data ])))
+        print('... Need to fix debug ...')
 
 
     def _get_node(self, index):
         '''Retrieves the Node object at the given index.  Throws an exception if the index is not within the bounds of the linked list.'''
-        n = self.head
-        for i in range(index):
-            n = n.next
-        return n.value
+        if 0 < index < self.size:
+            n = self.head
+            for i in range(index):
+                n = n.next
+            return n
+            # return n.value
+        else:
+            # RAISE ERROR
+            pass
 
 
     def add(self, item):
         '''Adds an item to the end of the linked list.'''
+        last_node = self._get_node(self.size-1)
+        last_node.next = Node(item)
+        self.size += 1
 
 
     def insert(self, index, item):
