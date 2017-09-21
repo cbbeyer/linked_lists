@@ -2,13 +2,16 @@ from linkedlist_api import LinkedList, Node
 
 # create linked list
 ll = LinkedList()
-ll.head = Node('a')
+ll.add('a')
 
 
-ll.head.next = Node('b')
-ll.head.next.next = Node('c')
-
-ll.size = 3
+# ll.head = Node('a')
+#
+#
+ll.add('b')
+ll.add('c')
+#
+# ll.size = 3
 
 # iterate through linked list
 # n = ll.head
@@ -29,6 +32,17 @@ ll.size = 3
 #     n = n.next
 
 ll.debug_print()
+
+# ll.get(0)
+# ll.get(1)
+# ll.get(2)
+
+ll.delete(0)
+# ll.delete(0)
+
+ll.get(0)
+ll.get(1)
+ll.get(2)
 
 
 #

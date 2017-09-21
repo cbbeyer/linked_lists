@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 
-
 class LinkedList(object):
     '''
     A linked list implementation that holds arbitrary objects.
@@ -16,10 +15,14 @@ class LinkedList(object):
         # print('{} >>> {}'.format(self.size, ', '.join([ str(item) for item in self.data ])))
         print('... Need to fix debug ...')
 
+    # def _get_all_values(self):
+    #     for i in range(self.size):
+    #         return temp_head
+    #         temp_head = temp_head.next
 
     def _get_node(self, index):
         '''Retrieves the Node object at the given index.  Throws an exception if the index is not within the bounds of the linked list.'''
-        if 0 < index < self.size:
+        if 0 <= index < self.size:
             n = self.head
             for i in range(index):
                 n = n.next
@@ -32,9 +35,14 @@ class LinkedList(object):
 
     def add(self, item):
         '''Adds an item to the end of the linked list.'''
-        last_node = self._get_node(self.size-1)
-        last_node.next = Node(item)
-        self.size += 1
+        # if statement for first added node to linked list
+        if self.head is not None:
+            last_node = self._get_node(self.size-1)
+            last_node.next = Node(item)
+            self.size += 1
+        else:
+            self.head = Node(item)
+            self.size += 1
 
 
     def insert(self, index, item):
@@ -47,10 +55,17 @@ class LinkedList(object):
 
     def get(self, index):
         '''Retrieves the item at the given index.  Throws an exception if the index is not within the bounds of the linked list.'''
+        print(self._get_node(index))
 
 
     def delete(self, index):
         '''Deletes the item at the given index. Throws an exception if the index is not within the bounds of the linked list.'''
+        if index is not 0:
+            prev_val = self._get_node(index-1)
+            prev_val.next = self._get_node(index+1)
+            print(prev_val)
+        else:
+            self.head = self._get_node(index+1)
 
 
     def swap(self, index1, index2):
