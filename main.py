@@ -10,6 +10,7 @@ ll.add('a')
 #
 ll.add('b')
 ll.add('c')
+ll.add('d')
 #
 # ll.size = 3
 
@@ -33,17 +34,36 @@ ll.add('c')
 
 ll.debug_print()
 
-# ll.get(0)
-# ll.get(1)
-# ll.get(2)
-
-ll.delete(0)
-# ll.delete(0)
-
 ll.get(0)
 ll.get(1)
 ll.get(2)
 
+# ll.delete(1)
+# ll.delete(0)
+
+# ll.set(1,'h')
+
+ll.insert(2, 'test1')
+ll.insert(2, 'test2')
+# print(ll.size)
+
+print('>>>>>> List 1')
+
+ll.get(0)
+ll.get(1)
+ll.get(2)
+ll.get(3)
+ll.get(4)
+
+print('>>>>>> List 2')
+
+ll.insert(0, 'hello')
+ll.get(0)
+ll.get(1)
+ll.get(2)
+ll.get(3)
+ll.get(4)
+ll.get(5)
 
 #
 # class Processor(object):

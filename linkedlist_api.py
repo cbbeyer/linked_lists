@@ -22,6 +22,9 @@ class LinkedList(object):
 
     def _get_node(self, index):
         '''Retrieves the Node object at the given index.  Throws an exception if the index is not within the bounds of the linked list.'''
+        # makes sure index is in range
+        # self._get_node(index)
+
         if 0 <= index < self.size:
             n = self.head
             for i in range(index):
@@ -30,6 +33,7 @@ class LinkedList(object):
             # return n.value
         else:
             # RAISE ERROR
+            print('>>>>>>>> Not in linked list. DON''T FORGET TO DO ERROR HANDLING')
             pass
 
 
@@ -47,25 +51,54 @@ class LinkedList(object):
 
     def insert(self, index, item):
         '''Inserts an item at the given index, shifting remaining items right.'''
+        # makes sure index is in range
+        # self._get_node(index)
+
+        if index == 0:
+            temp_val = self.head
+            self.head = Node(item)
+            self.head.next = temp_val
+            self.size += 1
+
+        else:
+            prev_val = self._get_node(index-1)
+            follow_val = self._get_node(index)
+            prev_val.next = Node(item)
+            prev_val.next.next = follow_val
 
 
     def set(self, index, item):
         '''Sets the given item at the given index.  Throws an exception if the index is not within the bounds of the linked list.'''
+        # makes sure index is in range
+        # self._get_node(index)
+
+        val = self._get_node(index)
+        val.value = item
 
 
     def get(self, index):
         '''Retrieves the item at the given index.  Throws an exception if the index is not within the bounds of the linked list.'''
-        print(self._get_node(index))
+        # makes sure index is in range
+        n = self._get_node(index)
+
+        if n is not None:
+            print('GET ----------', n.value)
+        else:
+            print('empty')
 
 
     def delete(self, index):
         '''Deletes the item at the given index. Throws an exception if the index is not within the bounds of the linked list.'''
+        # makes sure index is in range
+        # self._get_node(index)
+
         if index is not 0:
             prev_val = self._get_node(index-1)
             prev_val.next = self._get_node(index+1)
-            print(prev_val)
         else:
             self.head = self._get_node(index+1)
+
+        self.size -= 1
 
 
     def swap(self, index1, index2):
