@@ -12,13 +12,12 @@ class LinkedList(object):
 
     def debug_print(self):
         '''Prints a representation of the entire list.'''
-        # print('{} >>> {}'.format(self.size, ', '.join([ str(item) for item in self.data ])))
-        print('... Need to fix debug ...')
-
-    # def _get_all_values(self):
-    #     for i in range(self.size):
-    #         return temp_head
-    #         temp_head = temp_head.next
+        values = []
+        n = self.head
+        while n != None:
+            values.append(str(n.value))
+            n = n.next
+        print('{} >>> {}'.format(self.size, ', '.join(values)))
 
     def _get_node(self, index):
         '''Retrieves the Node object at the given index.  Throws an exception if the index is not within the bounds of the linked list.'''

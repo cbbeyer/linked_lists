@@ -47,6 +47,8 @@ ll.insert(2, 'test1')
 ll.insert(2, 'test2')
 # print(ll.size)
 
+ll.debug_print()
+
 print('>>>>>> List 1')
 
 ll.get(0)
@@ -57,6 +59,8 @@ ll.get(4)
 
 print('>>>>>> List 2')
 
+ll.debug_print()
+
 ll.insert(0, 'hello')
 ll.get(0)
 ll.get(1)
@@ -64,6 +68,8 @@ ll.get(2)
 ll.get(3)
 ll.get(4)
 ll.get(5)
+
+ll.debug_print()
 
 #
 # class Processor(object):
