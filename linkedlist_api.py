@@ -21,15 +21,12 @@ class LinkedList(object):
 
     def _get_node(self, index):
         '''Retrieves the Node object at the given index.  Throws an exception if the index is not within the bounds of the linked list.'''
-        # makes sure index is in range
-        # self._get_node(index)
 
         if 0 <= index < self.size:
             n = self.head
             for i in range(index):
                 n = n.next
             return n
-            # return n.value
         else:
             # RAISE ERROR
             print('>>>>>>>> Not in linked list. DON''T FORGET TO DO ERROR HANDLING')
@@ -64,6 +61,7 @@ class LinkedList(object):
             follow_val = self._get_node(index)
             prev_val.next = Node(item)
             prev_val.next.next = follow_val
+            self.size += 1
 
 
     def set(self, index, item):
@@ -102,6 +100,75 @@ class LinkedList(object):
 
     def swap(self, index1, index2):
         '''Swaps the values at the given indices.'''
+        if index1 == index2:
+            # raise Exception('Cannot swap a value in the same place')
+            print('Exception handling. Exit function')
+
+        # assign index 1 to the smaller value for if statement
+        if index1 > index2:
+            temp_1 = index1
+            index1 = index2
+            index2 = temp_1
+
+        # checking to make sure nodes are not next to each other
+        if (index2-index1) is not 1:
+            # determine whether or not to work with head
+            if index1 == 0:
+                temp_head1 = self.head
+                follow_val1 = self.head.next
+                prev_val2 = self._get_node(index2-1)
+                temp_node2 = self._get_node(index2)
+
+                # determine whether or not working with last node
+                if (index2+1) < self.size:
+                    follow_val2 = self._get_node(index2+1)
+                else:
+                    follow_val2 = None
+
+                self.head = temp_node2
+                self.head.next = follow_val1
+                prev_val2.next = temp_head1
+                temp_head1.next = follow_val2
+
+            else:
+                prev_val1 = self._get_node(index1-1)
+                temp_node1 = self._get_node(index1)
+                prev_val2 = self._get_node(index2-1)
+                temp_node2 = self._get_node(index2)
+
+
+                if (index2+1) < self.size:
+                    follow_val2 = self._get_node(index2+1)
+                else:
+                    follow_val2 = None
+
+                prev_val1.next = temp_node2
+                prev_val1.next.next = temp_node1.next
+                prev_val2.next = temp_node1
+                prev_val2.next.next = follow_val2
+
+        # nodes are next to each other
+        else:
+            if index1 == 0:
+                temp_head1 = self.head
+                follow_val1 = self.head.next
+                third_val = follow_val1.next
+                self.head = follow_val1
+                self.head.next = temp_head1
+                self.head.next.next = third_val
+            else:
+                if (index2+1) < self.size:
+                    follow_val = self._get_node(index2+1)
+                else:
+                    follow_val = None
+
+                prev_val1 = self._get_node(index1-1)
+                temp_node = self._get_node(index1)
+                prev_val1.next = self._get_node(index2)
+                prev_val1.next.next = temp_node
+                prev_val1.next.next.next = follow_val
+
+
 
 
 
