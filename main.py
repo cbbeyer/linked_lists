@@ -1,8 +1,47 @@
 from linkedlist_api import LinkedList, Node
-#
-# # create linked list
+import csv
+import sys
+
+orig_stdout = sys.stdout
+f = open('output.txt', 'w')
+sys.studout = f
+line_count = 0
+
+with open('data_example.csv') as csvfile:
+    reader = csv.reader(csvfile, delimiter=',')
+    for row in reader:
+        command = row[0]
+        if command == 'CREATE':
+                linked_list = LinkedList()
+        elif command == 'DEBUG':
+                linked_list.debug_print()
+        elif command == 'ADD':
+                linked_list.add(row[1])
+        elif command == 'GET':
+                linked_list.get(row[1])
+        elif command == 'SET':
+                linked_list.set(row[1],row[2])
+        elif command == 'INSERT':
+                linked_list.get(row[1],row[2])
+        elif command == 'DELETE':
+                linked_list.get(row[1])
+        elif command == 'SWAP':
+                linked_list.get(row[1], row[2])
+
+
+        line_count += 1
+
+sys.stdout = orig_stdout
+f.close()
+
+
+
+
+# create linked list
 # ll = LinkedList()
 # ll.add('a')
+#
+# ll.insert(3, 'b')
 #
 #
 # # ll.head = Node('a')
@@ -84,51 +123,51 @@ from linkedlist_api import LinkedList, Node
 # # ll.debug_print()
 
 
-class Processor(object):
-
-    def run(self, f):
-        '''Processes the given file stream.'''
-        for line_i, line in enumerate(f):
-            # get the line parts
-            line = line.rstrip()
-            print('{}:{}'.format(line_i, line))
-            parts = line.split(',')
-            # call this command's function
-            try:
-                func = getattr(self, 'cmd_{}'.format(parts[0].lower()))
-                func(*parts[1:])
-            except Exception as e:
-                print('Error: {}'.format(e))
-
-    def cmd_debug(self, *args):
-        self.ll.debug_print()
-
-    def cmd_create(self, *args):
-        self.ll = LinkedList()
-
-    def cmd_add(self, *args):
-        self.ll.add(args[0])
-
-    def cmd_insert(self, *args):
-        self.ll.insert(int(args[0]), args[1])
-
-    def cmd_set(self, *args):
-        self.ll.set(int(args[0]), args[1])
-
-    def cmd_get(self, *args):
-        print(self.ll.get(int(args[0])))
-
-    def cmd_delete(self, *args):
-        self.ll.delete(int(args[0]))
-
-    def cmd_swap(self, *args):
-        self.ll.swap(int(args[0]), int(args[1]))
-
-
-
-#######################
-###   Main loop
-
-with open('data.csv', newline='') as f:
-    processor = Processor()
-    processor.run(f)
+# class Processor(object):
+#
+#     def run(self, f):
+#         '''Processes the given file stream.'''
+#         for line_i, line in enumerate(f):
+#             # get the line parts
+#             line = line.rstrip()
+#             print('{}:{}'.format(line_i, line))
+#             parts = line.split(',')
+#             # call this command's function
+#             try:
+#                 func = getattr(self, 'cmd_{}'.format(parts[0].lower()))
+#                 func(*parts[1:])
+#             except Exception as e:
+#                 print('Error: {}'.format(e))
+#
+#     def cmd_debug(self, *args):
+#         self.ll.debug_print()
+#
+#     def cmd_create(self, *args):
+#         self.ll = LinkedList()
+#
+#     def cmd_add(self, *args):
+#         self.ll.add(args[0])
+#
+#     def cmd_insert(self, *args):
+#         self.ll.insert(int(args[0]), args[1])
+#
+#     def cmd_set(self, *args):
+#         self.ll.set(int(args[0]), args[1])
+#
+#     def cmd_get(self, *args):
+#         print(self.ll.get(int(args[0])))
+#
+#     def cmd_delete(self, *args):
+#         self.ll.delete(int(args[0]))
+#
+#     def cmd_swap(self, *args):
+#         self.ll.swap(int(args[0]), int(args[1]))
+#
+#
+#
+# #######################
+# ###   Main loop
+#
+# with open('data.csv', newline='') as f:
+#     processor = Processor()
+#     processor.run(f)
