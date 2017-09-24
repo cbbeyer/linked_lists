@@ -30,7 +30,6 @@ class LinkedList(object):
         else:
             # RAISE ERROR
             print('Error: {} is not within the bounds of the current linked list.'.format(index))
-            # return False
 
 
     def add(self, item):
@@ -67,11 +66,6 @@ class LinkedList(object):
         if self._get_node(index):
             val = self._get_node(index)
             val.value = item
-
-            # prev_val = self._get_node(index-1)
-            # follow_val = self._get_node(index+1)
-            # prev_val.next = Node(item)
-            # prev_val.next.next = follow_val
 
 
     def get(self, index):
