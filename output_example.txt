@@ -1,6 +1,6 @@
 0:CREATE,,
 1:DEBUG,,
-0 >>> 
+0 >>>
 2:ADD,a,
 3:ADD,e,
 4:ADD,r,
